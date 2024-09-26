@@ -1,0 +1,14 @@
+body {
+    background-color: #333033;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    min-width: 150px;
+    align-items: center;
+    justify-content: center;   
+}
+label {
+    color: white;
+}
