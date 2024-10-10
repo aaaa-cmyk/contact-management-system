@@ -6,20 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="styles/login.css">
-    <script src="/login.js"></script>
 </head>
 <body>
     <div class="login-container">
         <h1>Login</h1>
         <i class="fa-solid fa-address-book"></i> <br> <br>
-        <form id="log">
+        <form id="log" class="loginForm">
             <label for="contactEmail">Email</label>
             <input type="email" id="contactEmail" name="contactEmail">
             <label for="contactPassword">Password</label>
             <input type="password" id="contactPassword" name="contactPassword"><br><br>
-            <input type="submit" value="Login"  >
+            <input type="submit" value="Login" >
         </form>
         <button class="signup-btn" onclick="window.location.href = 'signup.html';">Sign Up</button>
     </div>
+    <script src="/login.js"></script>
 </body>
 </html>

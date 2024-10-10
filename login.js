@@ -3,6 +3,7 @@ function handleLoginFormSubmission(form) {
     // Prevent the default form submission to avoid appending URL parameters
     var formData = new FormData(form);
     var userInput = [];
+    // Usage of ^ is incredibly against cybersecurity standards. Using params in the link.
 
     // Collect the form data (email and password) into an array
     for (var field of formData.entries()) {
@@ -34,15 +35,19 @@ function handleLoginFormSubmission(form) {
     if (isAuthenticated) {
         alert("Login successful!");
         // Redirect to the Contacts Page
-        window.location.replace("allContacts.html");
+        window.location.replace("index.html");
     } else {
         alert("Invalid email or password. Please try again.");
     }
 }
 
 // Add event listener for form submission
-document.getElementById('log').addEventListener('submit', function (event) {
-    // Prevent the form's default action (prevents URL parameters from being appended)
-    event.preventDefault();  
-    handleLoginFormSubmission(event.target);  // Call the form handler with the form data
-});
+console.log(formElement);
+if (formElement) {
+    formElement.addEventListener('submit', function (event) {
+        // Prevent the form's default action (prevents URL parameters from being appended)
+        event.preventDefault();  
+        console.log("breakpoint");
+        handleLoginFormSubmission(event.target);  // Call the form handler with the form data
+    });
+}
