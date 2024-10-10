@@ -42,7 +42,7 @@ function handleLoginFormSubmission(form) {
 }
 
 // Add event listener for form submission
-console.log(formElement);
+formElement = document.getElementById("log");
 if (formElement) {
     formElement.addEventListener('submit', function (event) {
         // Prevent the form's default action (prevents URL parameters from being appended)
