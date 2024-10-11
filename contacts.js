@@ -1,70 +1,43 @@
-// Sample contacts data (in real scenarios, this would come from a database)
+// Example contacts data
 let contacts = [
-    { name: "John Doe", email: "john@example.com", phone: "123-456-7890" },
-    { name: "Jane Smith", email: "jane@example.com", phone: "987-654-3210" }
+    { name: "Rohan", email: "rohan@example.com", phone: "123-456-7890" },
+    { name: "Zachary", email: "zachary@example.com", phone: "987-654-3210" },
+    { name: "Vinay", email: "vinay@example.com", phone: "456-789-1234" },
+    { name: "Watergate Scandal Guy", email: "watergate@example.com", phone: "321-654-9870" },
+    { name: "Adarsh", email: "adarsh@example.com", phone: "789-123-4560" },
+    { name: "George W. Bush", email: "george@example.com", phone: "654-321-0987" },
+    { name: "Sigma (Overwatch)", email: "sigma@example.com", phone: "111-222-3333" },
+    { name: "Skibidi Slicer", email: "skibidi@example.com", phone: "555-666-7777" },
+    { name: "Dahta Ayida Tata", email: "dahta@example.com", phone: "888-999-0000" },
+    { name: "Bohan Banker", email: "bohan@example.com", phone: "000-111-2222" },
 ];
 
-// Function to display contacts in the table
+// Function to display contacts in the list
 function displayContacts() {
-    const contactsTable = document.querySelector("#contacts-table tbody");
-    contactsTable.innerHTML = ''; // Clear the table
+    const contactList = document.getElementById("contact_list");
+    contactList.innerHTML = '';  // Clear existing list
 
-    // Loop through contacts and add rows
+    // Loop through contacts and create list items
     contacts.forEach((contact, index) => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-            <td>${contact.name}</td>
-            <td>${contact.email}</td>
-            <td>${contact.phone}</td>
-            <td>
-                <button onclick="editContact(${index})">Edit</button>
-                <button onclick="deleteContact(${index})">Delete</button>
-            </td>
-        `;
-        contactsTable.appendChild(row);
+        const listItem = document.createElement("li");
+        listItem.classList.add("contact-name");
+        listItem.setAttribute("role", "option");
+        listItem.textContent = contact.name;
+        listItem.addEventListener("click", () => displayContactDetails(index));  // Add click event
+        contactList.appendChild(listItem);
     });
 }
 
-// Function to handle adding new contacts
-document.querySelector("#contactForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const newName = document.querySelector("#contactName").value;
-    const newEmail = document.querySelector("#contactEmail").value;
-    const newPhone = document.querySelector("#contactPhone").value;
-
-    // Add the new contact to the contacts array
-    contacts.push({ name: newName, email: newEmail, phone: newPhone });
-
-    // Display the updated contacts list
-    displayContacts();
-
-    // Clear the form
-    this.reset();
-});
-
-// Function to delete a contact
-function deleteContact(index) {
-    contacts.splice(index, 1);  // Remove the contact at the given index
-    displayContacts();  // Refresh the contacts list
-}
-
-// Function to edit a contact (basic functionality for now)
-function editContact(index) {
+// Function to display details of the clicked contact
+function displayContactDetails(index) {
     const contact = contacts[index];
-    document.querySelector("#contactName").value = contact.name;
-    document.querySelector("#contactEmail").value = contact.email;
-    document.querySelector("#contactPhone").value = contact.phone;
-
-    // Remove the old contact and replace it when the form is submitted
-    contacts.splice(index, 1);
+    const contactDetails = document.getElementById("contact-details");
+    contactDetails.innerHTML = `
+        <h2>${contact.name}</h2>
+        <p><strong>Email:</strong> ${contact.email}</p>
+        <p><strong>Phone:</strong> ${contact.phone}</p>
+    `;
 }
 
-// Function to handle logging out
-function logout() {
-    window.location.replace("login.html"); // Redirect back to login page
-}
-
-// Initial call to display the contacts when the page loads
+// Initial call to display contacts
 window.onload = displayContacts;
-

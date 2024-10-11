@@ -4,25 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Contacts</title>
-    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/contacts.css">
 </head>
 <body>
     <header>
         <h1>Contact List</h1>
+        <button onclick="logout()">Logout</button>
     </header>
-    
+
     <main>
-        <div class="listbox-area">
-            <div>
-                <span id="title" class="listbox-label">Contacts:</span>
-                <ul id="contact_list" tabindex="0" role="listbox" aria-labelledby="ss_elem">
-                    <!-- List of Contacts -->
-                    <li id="name" role="option">Rohan</li>
-                    <li id="name" role="option">Adarsh</li>
-                    <li id="name" role="option">Vinay</li>
-                </ul>
-            </div>
+        <!-- Search bar -->
+        <div class="search-container">
+            <input type="text" id="searchBar" placeholder="Search contacts..." onkeyup="filterContacts()">
+        </div>
+
+        <!-- Contacts table -->
+        <div class="table-container">
+            <table id="contacts-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Contacts will be dynamically inserted here by contacts.js -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Add/Edit Contact Form -->
+        <div class="form-container">
+            <form id="contactForm">
+                <label for="contactName">Name:</label>
+                <input type="text" id="contactName" name="name" required>
+
+                <label for="contactEmail">Email:</label>
+                <input type="email" id="contactEmail" name="email" required>
+
+                <label for="contactPhone">Phone:</label>
+                <input type="tel" id="contactPhone" name="phone" required>
+
+                <button type="submit">Add/Update Contact</button>
+            </form>
         </div>
     </main>
+
+    <script src="scripts/contact.js"></script>
 </body>
 </html>

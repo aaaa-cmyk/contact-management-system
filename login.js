@@ -2,23 +2,16 @@
 function handleLoginFormSubmission(form) {
     // Prevent the default form submission to avoid appending URL parameters
     var formData = new FormData(form);
-    var userInput = [];
-    // Usage of ^ is incredibly against cybersecurity standards. Using params in the link.
 
-    // Collect the form data (email and password) into an array
-    for (var field of formData.entries()) {
-        userInput.push(field[1]);  // Collect Email and Password from the form
-    }
+    // Extract the form input using name attributes
+    var enteredEmail = formData.get('contactEmail').trim();    // Email entered by the user
+    var enteredPassword = formData.get('contactPassword').trim(); // Password entered by the user
 
     // Example credentials for demo purposes (in practice, this would come from a database)
     var registeredUsers = [
-        {email: "test@example.com", password: "test"},  // Add more users as necessary
-        {email: "user2@example.com", password: "Password2"}
+        {email: "test@gmail.com", password: "test"},  // Example user
+        {email: "user2@gmail.com", password: "Password2"} // Another example user
     ];
-
-    // Extract the form input
-    var enteredEmail = userInput[0];    // Email entered by the user
-    var enteredPassword = userInput[1]; // Password entered by the user
 
     // Flag to track if the login is successful
     var isAuthenticated = false;
@@ -42,12 +35,11 @@ function handleLoginFormSubmission(form) {
 }
 
 // Add event listener for form submission
-formElement = document.getElementById("log");
+var formElement = document.getElementById("log");
 if (formElement) {
     formElement.addEventListener('submit', function (event) {
         // Prevent the form's default action (prevents URL parameters from being appended)
-        event.preventDefault();  
-        console.log("breakpoint");
+        event.preventDefault();
         handleLoginFormSubmission(event.target);  // Call the form handler with the form data
     });
 }
