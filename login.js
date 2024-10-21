@@ -4,25 +4,18 @@ function handleLoginFormSubmission(form) {
     var formData = new FormData(form);
     var userInput = [];
     // Usage of ^ is incredibly against cybersecurity standards. Using params in the link.
-
     // Collect the form data (email and password) into an array
     for (var field of formData.entries()) {
-        userInput.push(field[1]);  // Collect Email and Password from the form
+        userInput.push(field[1]);
     }
-
     // Example credentials for demo purposes (in practice, this would come from a database)
     var registeredUsers = [
         {email: "test@example.com", password: "test"},  // Add more users as necessary
         {email: "user2@example.com", password: "Password2"}
     ];
-
-    // Extract the form input
-    var enteredEmail = userInput[0];    // Email entered by the user
-    var enteredPassword = userInput[1]; // Password entered by the user
-
-    // Flag to track if the login is successful
+    var enteredEmail = userInput[0];  
+    var enteredPassword = userInput[1];
     var isAuthenticated = false;
-
     // Check if entered email and password match any registered user credentials
     for (let i = 0; i < registeredUsers.length; i++) {
         if (enteredEmail === registeredUsers[i].email && enteredPassword === registeredUsers[i].password) {
@@ -30,11 +23,8 @@ function handleLoginFormSubmission(form) {
             break;
         }
     }
-
-    // Handle the login result
     if (isAuthenticated) {
         alert("Login successful!");
-        // Redirect to the Contacts Page
         window.location.replace("index.html");
     } else {
         alert("Invalid email or password. Please try again.");
